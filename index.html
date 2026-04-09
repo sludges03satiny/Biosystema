@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <!-- PWA / iPhone home screen -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Biosystema" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="theme-color" content="#050810" />
+
+  <link rel="manifest" href="/manifest.json" />
+
+  <!-- iOS home screen icon (replace with real icon URL once you have one) -->
+  <link rel="apple-touch-icon" href="/icon-192.png" />
+
+  <title>Biosystema</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- Load data first, then app logic -->
+  <script src="/data.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
