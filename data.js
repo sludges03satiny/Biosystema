@@ -76,6 +76,14 @@ const EVENING = [
   { time: "11:00",dur: 450, icon: "💤", label: "Sleep — 7.5 hrs",          cat: "sleep",     key: "sleep" },
 ];
 
+// ── EVENING — MORNING WORKOUT VARIANT (30 min earlier throughout) ─────────
+const EVENING_AM = [
+  { time: "8:40", dur: 50,  icon: "🍽️", label: "Dinner with Wife",        cat: "social",    key: "dinner" },
+  { time: "9:30", dur: 30,  icon: "🌙", label: "Wind Down",                cat: "sleep",     key: "winddown",    note: "30 min earlier — the cost of the 6:00 wake." },
+  { time: "10:00",dur: 30,  icon: "🛏️", label: "In Bed",                  cat: "sleep",     key: "inBed",       note: "10:00pm for 6:00 wake. Same 7.5 hrs — same 5 cycles." },
+  { time: "10:30",dur: 450, icon: "💤", label: "Sleep — 7.5 hrs",          cat: "sleep",     key: "sleep" },
+];
+
 // ── DAY TYPES ─────────────────────────────────────────────────────────────
 const DAYS = {
   wfh: {
