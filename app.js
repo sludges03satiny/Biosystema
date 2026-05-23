@@ -210,7 +210,8 @@ function viewDay() {
   const morningBlocks   = useAM ? day.morningWorkout.morning   : day.morning;
   const afternoonBlocks = useAM ? day.morningWorkout.afternoon : day.afternoon;
   const tagline         = useAM ? day.morningWorkout.tagline   : day.tagline;
-  const allBlocks = [...morningBlocks, ...WORK_BLOCKS, ...afternoonBlocks, ...EVENING];
+  const eveningBlocks = useAM ? EVENING_AM : EVENING;
+  const allBlocks = [...morningBlocks, ...WORK_BLOCKS, ...afternoonBlocks, ...eveningBlocks];
   return `<div class="day-view">
     <button class="back-btn" onclick="goHome()">← CHANGE DAY</button>
     ${timelineBar(allBlocks)}
@@ -229,7 +230,7 @@ function viewDay() {
     <div class="section-label">EVENING</div>
     <div class="blocks">
       ${afternoonBlocks.map((b,i)=>blockHTML(b,`a-${i}`)).join('')}
-      ${EVENING.map((b,i)=>blockHTML(b,`e-${i}`)).join('')}
+      ${eveningBlocks.map((b,i)=>blockHTML(b,`e-${i}`)).join('')}
     </div>
     <div class="footer-card">
       <div class="footer-icon">🔑</div>
@@ -321,9 +322,9 @@ function renderHeader() {
       <div class="header-title">Biosystema</div>
       <div class="header-greek">βιοσύστημα — organized life</div>
       <div class="header-anchors">
-        <div class="header-anchor"><div class="header-anchor-icon">⏰</div>Wake 6:30</div>
+        <div class="header-anchor"><div class="header-anchor-icon">⏰</div>Wake ${S.morningWorkout ? '6:00' : '6:30'}</div>
         <div class="header-anchor"><div class="header-anchor-icon">💤</div>7.5 hrs</div>
-        <div class="header-anchor"><div class="header-anchor-icon">🛏️</div>Bed 10:30</div>
+        <div class="header-anchor"><div class="header-anchor-icon">🛏️</div>Bed ${S.morningWorkout ? '10:00' : '10:30'}</div>
       </div>
     </div>
   </div>`;

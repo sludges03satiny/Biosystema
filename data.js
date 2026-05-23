@@ -38,6 +38,7 @@ const SCI = {
   personalTime: { s: "The hour after dinner is the optimal window for winding down gradually. Low-stimulation enjoyable activity — reading, light conversation, a calm hobby — allows the nervous system to shift from sympathetic to parasympathetic dominance. Trying to switch directly from stimulating activity to sleep doesn't work physiologically.", r: "Reading, talking, a calm hobby. No screens, no news, nothing that excites. This is the natural on-ramp to wind-down." },
   winddown:     { s: "Blue light suppresses melatonin for up to 3 hours. Core body temperature must drop 1–2°F to initiate sleep. Dimming lights and removing stimulation 30–60 min before bed accelerates both processes significantly.", r: "Dim lights. No screens. Prepare for sleep. Non-negotiable — it's what makes 11pm sleep actually happen." },
   inBed:        { s: "10:30pm in bed gives your body 30 min to fall asleep and exactly 7.5 hours — 5 complete 90-min sleep cycles. The final cycles are REM-rich, handling emotional regulation and memory integration. Cutting them by sleeping late removes the most valuable sleep.", r: "In bed at 10:30. Non-negotiable. Tomorrow's performance is decided right now." },
+  inBedAM:      { s: "Morning workout means waking at 6:00am — 30 minutes earlier. To preserve the full 7.5 hours (5 complete 90-min sleep cycles), bedtime shifts to 10:00pm. Same sleep architecture, same REM-rich final cycles, same recovery — just anchored 30 minutes earlier.", r: "In bed at 10:00 on morning workout days. The earlier wake only works if the earlier sleep actually happens." },
   sleep:        { s: "7.5 hours = exactly 5 complete 90-min sleep cycles. Memory consolidation, emotional regulation, growth hormone release, immune function — all peak during sleep. Walker: 6 hours produces impairment equivalent to 24hrs of sleep deprivation, and you cannot feel how impaired you are.", r: "65–68°F room. Dark. Consistent. This is the foundation everything else rests on." },
   adminLife:    { s: "Batching life admin on specific days eliminates the cognitive overhead of deciding when to do it. Decision fatigue is real — pre-deciding protects mental energy for higher-leverage work.", r: "WFH days carry the admin load so other days stay clean." },
   cookTogether: { s: "Cooking together is a high-quality connection ritual shown to increase relationship satisfaction and daily wellbeing. Shared physical activity creates genuine presence — more valuable than side-by-side screen time.", r: "Protect this time. Don't fill it with productivity. Fill it with life." },
@@ -74,6 +75,15 @@ const EVENING = [
   { time: "10:00",dur: 30,  icon: "🌙", label: "Wind Down",                cat: "sleep",     key: "winddown" },
   { time: "10:30",dur: 30,  icon: "🛏️", label: "In Bed",                  cat: "sleep",     key: "inBed" },
   { time: "11:00",dur: 450, icon: "💤", label: "Sleep — 7.5 hrs",          cat: "sleep",     key: "sleep" },
+];
+
+// ── EVENING (morning workout variant — all times 30 min earlier) ──────────
+const EVENING_AM = [
+  { time: "8:10", dur: 50,  icon: "🍽️", label: "Dinner with Wife",        cat: "social",    key: "dinner" },
+  { time: "9:00", dur: 30,  icon: "📖", label: "Personal Time — Calm",     cat: "social",    key: "personalTime", note: "Reading, light conversation, calm hobby. No screens." },
+  { time: "9:30", dur: 30,  icon: "🌙", label: "Wind Down",                cat: "sleep",     key: "winddown",     note: "30 min earlier tonight — morning workout means earlier bed." },
+  { time: "10:00",dur: 30,  icon: "🛏️", label: "In Bed",                  cat: "sleep",     key: "inBedAM" },
+  { time: "10:30",dur: 450, icon: "💤", label: "Sleep — 7.5 hrs",          cat: "sleep",     key: "sleep" },
 ];
 
 // ── DAY TYPES ─────────────────────────────────────────────────────────────
