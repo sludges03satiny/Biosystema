@@ -10,6 +10,7 @@ let S = {
   workOpen: false,
   principleOpen: null,
   focusOpen: null,
+  morningWorkout: false,
 };
 
 function setState(patch) {
@@ -205,18 +206,29 @@ function viewHome() {
 function viewDay() {
   const day = DAYS[S.dayKey];
   setAccent(day.accent);
-  const allBlocks = [...day.morning, ...WORK_BLOCKS, ...day.afternoon, ...EVENING];
+  const useAM = S.morningWorkout && !!day.morningWorkout;
+  const morningBlocks   = useAM ? day.morningWorkout.morning   : day.morning;
+  const afternoonBlocks = useAM ? day.morningWorkout.afternoon : day.afternoon;
+  const tagline         = useAM ? day.morningWorkout.tagline   : day.tagline;
+  const allBlocks = [...morningBlocks, ...WORK_BLOCKS, ...afternoonBlocks, ...EVENING];
   return `<div class="day-view">
     <button class="back-btn" onclick="goHome()">← CHANGE DAY</button>
     ${timelineBar(allBlocks)}
-    <p class="day-tagline">${day.tagline}</p>
+    ${day.morningWorkout ? `<div class="workout-toggle-row">
+      <span class="workout-toggle-label">WORKOUT</span>
+      <div class="workout-toggle" onclick="toggleMorningWorkout()">
+        <span class="workout-toggle-opt${!useAM?' active':''}">PM</span>
+        <span class="workout-toggle-opt${useAM?' active':''}">AM</span>
+      </div>
+    </div>` : ''}
+    <p class="day-tagline">${tagline}</p>
     <div class="section-label">MORNING</div>
-    <div class="blocks">${day.morning.map((b,i)=>blockHTML(b,`m-${i}`)).join('')}</div>
+    <div class="blocks">${morningBlocks.map((b,i)=>blockHTML(b,`m-${i}`)).join('')}</div>
     <div class="section-label">WORK</div>
     <div class="blocks">${workCollapsible()}</div>
     <div class="section-label">EVENING</div>
     <div class="blocks">
-      ${day.afternoon.map((b,i)=>blockHTML(b,`a-${i}`)).join('')}
+      ${afternoonBlocks.map((b,i)=>blockHTML(b,`a-${i}`)).join('')}
       ${EVENING.map((b,i)=>blockHTML(b,`e-${i}`)).join('')}
     </div>
     <div class="footer-card">
@@ -344,7 +356,8 @@ function render() {
 }
 
 // ── ACTIONS ───────────────────────────────────────────────────
-function selectDay(key)     { setState({ dayKey: key, view: 'day', expanded: {}, workOpen: false }); }
+function selectDay(key)     { setState({ dayKey: key, view: 'day', expanded: {}, workOpen: false, morningWorkout: false }); }
+function toggleMorningWorkout() { setState({ morningWorkout: !S.morningWorkout, expanded: {} }); }
 function goHome()           { setState({ view: 'home' }); }
 function toggleWork()       { setState({ workOpen: !S.workOpen }); }
 function toggleBlock(id)    { setState({ expanded: { ...S.expanded, [id]: !S.expanded[id] } }); }

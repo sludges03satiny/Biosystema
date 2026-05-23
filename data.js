@@ -46,6 +46,8 @@ const SCI = {
   bikePrep:     { s: "Small pre-performance rituals prime the motor cortex and signal the body that physical exertion is coming. Gear checked the night before eliminates morning decision overhead.", r: "Helmet, lights, water. Everything checked the night before." },
   commsBlock:   { s: "Post-siesta alertness supports collaborative and communicative work. Your cognitive peak has passed — use remaining alertness for coordination, not deep analysis.", r: "Meetings, email, async responses. Don't fight your biology." },
   wrapBlock:    { s: "Final work block. Tie up loose ends, respond to anything time-sensitive, prepare for tomorrow. Starting new deep work here is a trap — it extends the day and degrades the shutdown ritual.", r: "Close, document, prepare. Leave nothing open." },
+  workoutAM:    { s: "Morning exercise coincides with the cortisol awakening response, amplifying the alerting effect and carrying elevated BDNF into the workday. Consistency data strongly favors morning exercisers — fewer cancellations, better 12-month adherence. The trade-off: core body temperature and muscle activation are lower in the morning, producing ~5–8% less peak output than late-afternoon sessions. For health and mood adaptation, this gap is negligible.", r: "If the PM slot keeps getting cancelled, morning is the right answer. The best workout is the one that actually happens." },
+  freeEvening:  { s: "This block is normally occupied by your workout. With exercise moved to the morning, this time becomes genuinely unstructured — rare in a tightly designed schedule. Research on autonomy and wellbeing (Ryan & Deci) shows freely chosen, intrinsically motivated evening activity produces wellbeing gains that scheduled productivity cannot replicate.", r: "No agenda. No optimization. Read, rest, do whatever you actually want. This is the dividend of the early morning." },
 };
 
 // ── WORK BLOCKS (shared across all day types) ─────────────────────────────
@@ -92,6 +94,23 @@ const DAYS = {
       { time: "7:20", dur: 20,  icon: "🐕", label: "Evening Dog Walk",          cat: "anchor",    key: "dogPM" },
       { time: "7:40", dur: 60,  icon: "🍳", label: "Cook + Life Admin",         cat: "admin",     key: "adminLife" },
     ],
+    morningWorkout: {
+      tagline: "Workout done by 7:15. Full evening reclaimed.",
+      pills: [["exercise","6am Workout"],["anchor","Morning Ritual"],["deepwork","Deep Work"],["social","Free Evening"]],
+      morning: [
+        { time: "6:00", dur: 15,  icon: "☀️", label: "Wake + Light",              cat: "anchor",    key: "wake",       note: "30 min earlier — the trade-off for a free evening." },
+        { time: "6:15", dur: 60,  icon: "🏋️", label: "Workout — 60 min",         cat: "exercise",  key: "workoutAM" },
+        { time: "7:15", dur: 15,  icon: "🚿", label: "Shower + Transition",       cat: "anchor",    key: "shower" },
+        { time: "7:30", dur: 20,  icon: "🐕", label: "Morning Dog Walk",          cat: "anchor",    key: "dogAM",      note: "Light exposure still hits. Unhurried." },
+        { time: "7:50", dur: 30,  icon: "🥣", label: "Breakfast — No Screens",    cat: "nutrition", key: "breakfast" },
+        { time: "8:20", dur: 10,  icon: "🧘", label: "Morning Prep",              cat: "anchor",    key: "morningWFH", note: "Brief. Still screen-free." },
+      ],
+      afternoon: [
+        { time: "6:00", dur: 30,  icon: "🐕", label: "Evening Dog Walk — Longer", cat: "anchor",    key: "dogPM",      note: "Extra time tonight — take your time." },
+        { time: "6:30", dur: 70,  icon: "🍳", label: "Cook + Life Admin",         cat: "admin",     key: "adminLife" },
+        { time: "7:40", dur: 60,  icon: "📖", label: "Free Evening",              cat: "social",    key: "freeEvening" },
+      ],
+    },
   },
   office: {
     label: "Office Day", emoji: "🏢", accent: "#38bdf8",
@@ -111,6 +130,23 @@ const DAYS = {
       { time: "8:00", dur: 15,  icon: "🐕", label: "Evening Dog Walk",          cat: "anchor",    key: "dogPM" },
       { time: "8:15", dur: 25,  icon: "🍳", label: "Simple Dinner Prep",        cat: "nutrition", key: "simpleDinner" },
     ],
+    morningWorkout: {
+      tagline: "Workout done before the commute. Evening fully reclaimed.",
+      pills: [["exercise","6am Workout"],["transit","1hr Commute"],["deepwork","Deep Work"],["social","Free Evening"]],
+      morning: [
+        { time: "6:00", dur: 15,  icon: "☀️", label: "Wake + Light",              cat: "anchor",    key: "wake",      note: "30 min earlier to fit workout before commute." },
+        { time: "6:15", dur: 45,  icon: "🏋️", label: "Workout — 45 min",         cat: "exercise",  key: "workoutAM" },
+        { time: "7:00", dur: 15,  icon: "🚿", label: "Shower + Transition",       cat: "anchor",    key: "shower" },
+        { time: "7:15", dur: 15,  icon: "🥣", label: "Breakfast — Quick",         cat: "nutrition", key: "breakfast", note: "Pre-prepped the night before. Commute at 7:30." },
+        { time: "7:30", dur: 60,  icon: "🚌", label: "Commute to Office — 1hr",   cat: "transit",   key: "commuteGo", note: "Gear packed night before. No morning prep needed." },
+      ],
+      afternoon: [
+        { time: "6:00", dur: 60,  icon: "🚌", label: "Commute Home — 1hr",        cat: "transit",   key: "commuteHome" },
+        { time: "7:00", dur: 40,  icon: "🐕", label: "Evening Dog Walk — Longer", cat: "anchor",    key: "dogPM",     note: "Making up for the skipped morning walk." },
+        { time: "7:40", dur: 30,  icon: "🍳", label: "Simple Dinner Prep",        cat: "nutrition", key: "simpleDinner" },
+        { time: "8:10", dur: 30,  icon: "📖", label: "Free Time",                 cat: "social",    key: "freeEvening" },
+      ],
+    },
   },
   bike: {
     label: "Bike to Work", emoji: "🚴", accent: "#ec4899",
